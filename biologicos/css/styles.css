@@ -1,0 +1,315 @@
+
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    padding-right: 30px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    margin-left: 40px;
+}
+
+.controls label {
+    font-weight: bold;
+}
+
+/* Estilos tipo Bootstrap para listas desplegables */
+.controls select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.controls select:hover {
+    border-color: #888;
+}
+
+.controls select:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 4px rgba(0, 86, 179, 0.5);
+    outline: none;
+}
+
+.controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Estilos de visualización de datos */
+.data-visualization {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    height: 500px; /* Ajusta el alto según sea necesario */
+    margin-bottom: 20px;
+}
+
+.data-grid {
+    flex: 1;
+    margin-right: 10px;
+    border: 2px solid #000000;
+    overflow: auto;
+}
+
+#tabla2 {
+    height: 100%;
+}
+
+#grafico1 {
+    flex: 2;
+    height: 100%;
+    border: 2px solid #000000;
+}
+
+.bottom-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bottom-section .grafico {
+    flex: 1 1 calc(50% - 10px);
+    height: 500px;
+    width:500px ;
+    border: 2px solid #000000;
+}
+
+.grafico {
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translateZ(0);
+    border: 2px solid #000000;
+}
+
+.data-grid h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+tr:nth-child(even) {
+    background-color: #eaf5ea;
+}
+
+tr.selected {
+    background-color: yellow !important;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background: #f2c200;
+    cursor: pointer;
+}
+
+td.highlight {
+    background-color: #ff0;
+}
+
+tr td:last-child {
+    font-weight: bold;
+}
+/* Estilos para ambas tablas */
+#tabla1, #tabla2 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#tabla1 th, #tabla1 td, #tabla2 th, #tabla2 td {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 2px;
+    font-size: 10px;
+    text-align: left;
+}
+
+#tabla1 th, #tabla2 th {
+    background-color: #f2c200;
+    color: #004d00;
+}
+
+#tabla1 tr:nth-child(even), #tabla2 tr:nth-child(even) {
+    background-color: #eaf5ea;
+}
+
+#tabla1 thead th, #tabla2 thead th {
+    position: sticky;
+    top: 0;
+    background: #f2c200;
+    z-index: 2;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+/* Estilos para el pop-up de error */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #000000;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup .popup-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.popup .btn {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.popup .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+
+/* Para pantallas de hasta 1200px */
+@media (max-width: 1200px) {
+    .top-section, .bottom-section, .grafico, #tabla2 {
+        height: 500px;
+    }
+    #tabla2,#data-grid {
+        display: none; /* Oculta el gráfico y la tabla */
+    }
+}
+
+/* Para pantallas de hasta 992px */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 120px;
+    }
+    .content {
+        margin-left: 120px;
+        width: calc(100% - 120px);
+    }
+    .top-section, .bottom-section, .grafico{
+        height: 450px;
+    }
+    #tabla2,#data-grid {
+        display: none; /* Oculta el gráfico y la tabla */
+    }
+}
+
+/* Para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+    }
+    .content {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+    }
+    .top-section, .bottom-section, .grafico{
+        height: 400px;
+    }
+    #tabla2,.data-grid,.fas.fa-table {
+        display: none; /* Oculta el gráfico y la tabla */
+    }
+}
+
+/* Para pantallas de hasta 576px */
+@media (max-width: 576px) {
+    .sidebar {
+        width: 80px;
+    }
+    .content {
+        margin-left: 80px;
+        width: calc(100% - 80px);
+        flex-direction: column;
+    }
+    .top-section,.grafico {
+        flex-direction: column;
+    }
+    .top-section, .bottom-section ,.grafico{
+        height: 350px;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-right: 0;
+    }
+    #tabla2 , .data-grid,.fas.fa-table{
+        display: none; /* Oculta el gráfico y la tabla */
+    }
+    #grafico1,#grafico2,#grafico3,#grafico4,#grafico5 {
+        flex-direction: column;
+    }
+}
+
+/* Para pantallas de hasta 400px */
+@media (max-width: 400px) {
+    .sidebar {
+        width: 60px;
+    }
+    .content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        flex-direction: column;
+    }
+    .top-section, .grafico {
+        flex-direction: column;
+    }
+    .top-section, .bottom-section, .grafico {
+        max-height: 300px;
+    }
+    #tabla2, .data-grid,.fas.fa-table {
+        display: none; /* Oculta el gráfico y la tabla */
+    }
+    #grafico1,#grafico2,#grafico3,#grafico4,#grafico5 {
+        flex-direction: column;
+    }
+}

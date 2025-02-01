@@ -1,0 +1,483 @@
+
+/* Estilos para el contenido principal */
+.content {
+    margin-left: 150px;
+    flex-grow: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+}
+
+/* Estilos para la sección superior del contenido principal */
+.top-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.satellite-image,
+.data-grid {
+    flex: 1;
+    margin: 10px;
+    overflow: hidden;
+    background-color: #e6e6e6;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    max-height: 600px; /* Limitar la altura máxima */
+}
+
+.satellite-image {
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+#map {
+    height: 100vh; /* Altura completa de la ventana */
+    width: 100%; /* Ancho completo */
+    overflow-y: 5;
+}
+
+.data-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para las pestañas */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #fff;
+}
+
+.tablink {
+    background-color: #a5d6a7;
+    color: #004d00;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+}
+
+.tablink:hover {
+    background-color: #81c784;
+}
+
+.tabcontent {
+    display: none;
+    padding: 10px;
+    border-top: none;
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+}
+
+/* Estilos para el área de información */
+.info-area {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    background-color: rgba(250, 250, 250, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    overflow-y: hidden;
+}
+
+.info-area p {
+    background-color: #f4f4f9;
+    padding: 10px;
+    border-left: 4px solid #f2c200;
+    line-height: 1.6;
+}
+
+.info-area p:before {
+    content: "ℹ️";
+    font-size: 24px;
+    color: #004d00;
+    margin-right: 10px;
+}
+
+/* Estilos para encabezados */
+h2 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #004d00;
+}
+
+/* Estilos para el contenedor de la tabla */
+.table-container {
+    max-height: 400px; /* Limitar la altura máxima */
+    overflow-y: auto;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+th, td {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 2px; /* Ajustar el padding */
+    text-align: left;
+    font-size: 10px; /* Reducir el tamaño de la fuente */
+}
+
+th {
+    background-color: #f2c200;
+    color: #004d00;
+}
+
+/* Estilos para las filas alternas de la tabla */
+tr:nth-child(even) {
+    background-color: #eaf5ea;
+}
+
+/* Estilos para la fila seleccionada */
+tr.selected {
+    background-color: yellow !important;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background: #f2c200;
+    z-index: 2;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos para el contenedor desplegable */
+#dropdown-container {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+#dropdown-container select,
+#dropdown-container button {
+    padding: 8px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de buscar */
+#buscar-btn {
+    background-color: #004d00;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 50px;
+}
+
+#buscar-btn:hover {
+    background-color: #1c601a;
+    color: black;
+}
+
+/* Estilos para las pestañas de parámetros */
+#biological-parameters-tab,
+#physicochemical-parameters-tab {
+    background-color: #218e26;
+    color: white;
+    border-radius: 50px;
+}
+
+#biological-parameters-tab:hover,
+#physicochemical-parameters-tab:hover {
+    background-color: #8a8e21;
+}
+
+
+
+/* Estilos específicos para íconos */
+.icon a[href="#home"] {
+    background-color: #007bff;
+    color: white;
+}
+
+.icon a[href="#home"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el pop-up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.popup-text {
+    margin-bottom: 20px;
+}
+
+.popup button {
+    padding: 10px 20px;
+    background-color: #004d00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #2196f3;
+    color: #fff;
+ 
+}
+
+/* Estilos para la fila de gráficos */
+.fila-graficos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 2px;
+}
+
+/* Estilos para el gráfico */
+.chart {
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Agregar sombra */
+    transform: translateZ(0); /* Crear efecto 3D */
+}
+
+.chart svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    text-align: right;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de cerrar */
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
+}
+
+
+/* CSS Responsive */
+
+/* Para dispositivos con un ancho máximo de 480px (móviles) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 80px;
+    }
+    .sidebar:hover {
+        width: 90px;
+    }
+    .sidebar .icon a {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    #sidebar-toggle-btn {
+        left: 5px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+    .content {
+        margin-left: 80px;
+    }
+    .satellite-image,
+    .data-grid {
+        flex: 1;
+        max-height: 600px;
+    }
+    .top-content {
+        flex-direction: column;
+    }
+    .chart {
+        margin-bottom: 15px;
+    }
+    .fila-graficos {
+        flex-direction: column;
+        align-items: center;
+    }
+    .tablink {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    p {
+        font-size: 14px;
+    }
+    table {
+        font-size: 8px;
+    }
+    .info-area p:before {
+        font-size: 18px;
+    }
+}
+
+/* Para dispositivos con un ancho entre 481px y 768px (tablets y móviles en modo horizontal) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+    }
+    .chart {
+        flex: 1 1 100%;
+    }
+    .sidebar:hover {
+        width: 110px;
+    }
+    .sidebar .icon a {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    #sidebar-toggle-btn {
+        left: 10px;
+    }
+    .content {
+        margin-left: 100px;
+    }
+    .satellite-image {
+        flex: 1;
+        max-height: 400px;
+    }
+    .data-grid {
+        flex: 1;
+        max-height: 600px;
+    }
+    .top-content {
+        flex-direction: column;
+    }
+    .fila-graficos {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chart {
+        margin-bottom: 20px;
+    }
+    .info-area {
+        margin: 10px;
+        padding: 15px;
+    }
+    .tablink {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
+/* Para dispositivos con un ancho mínimo de 1025px y máximo de 1366px (pantallas grandes, laptops) */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .sidebar {
+        width: 140px;
+    }
+    .sidebar:hover {
+        width: 160px;
+    }
+    .sidebar .icon a {
+        font-size: 18px;
+        padding: 12px 16px;
+    }
+    #sidebar-toggle-btn {
+        left: 30px;
+        font-size: 26px;
+    }
+    .content {
+        margin-left: 140px;
+    }
+    .satellite-image,
+    .data-grid {
+        max-height: 600px;
+    }
+    .chart {
+        margin-bottom: 30px;
+    }
+    .tablink {
+        font-size: 18px;
+        padding: 14px 16px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    p {
+        font-size: 18px;
+    }
+    table {
+        font-size: 12px;
+    }
+    .fila-graficos {
+        flex-direction: row; /* Mantener en fila en pantallas más grandes */
+        justify-content: space-between;
+    }
+}
