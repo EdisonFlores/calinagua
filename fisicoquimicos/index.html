@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es" data-bs-theme="light">
+  <head>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f766e">
+    <title>CALINAGUA | Fisicoquímicos</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="img/logo.png">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="assets/css/app.css?v=26">
+  </head>
+  <body data-page="fisicoquimicos">
+    <div class="app-shell">
+      <aside class="sidebar d-none d-lg-flex">
+        <div class="brand">
+          <img src="img/logo.png" alt="CALINAGUA">
+          <div>
+            <strong>CALINAGUA</strong>
+            <span data-i18n="brandSubtitle">Calidad del agua</span>
+          </div>
+        </div>
+        <nav class="nav flex-column gap-1" aria-label="Navegación principal" data-i18n-aria-label="mainNavigation">
+          <button class="nav-link active" type="button" data-view="principal">
+            <i class="bi bi-grid-1x2"></i>
+            <span data-i18n="principal">Principal</span>
+          </button>
+          <button class="nav-link" type="button" data-view="fisicoquimicos">
+            <i class="bi bi-droplet-half"></i>
+            <span data-i18n="physicochemical">Fisicoquímicos</span>
+          </button>
+          <button class="nav-link" type="button" data-view="biologicos">
+            <i class="bi bi-bug"></i>
+            <span data-i18n="biological">Biológicos</span>
+          </button>
+        </nav>
+        <div class="sidebar-links" aria-label="Referencias externas">
+          <a class="sidebar-link" href="https://moronabus.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="MoronaBus" title="MoronaBus">
+            <i class="bi bi-bus-front"></i>
+          </a>
+          <a class="sidebar-link" href="https://morona-santiago-vias-wj1s.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Morona Santiago Vial" title="Morona Santiago Vial">
+            <i class="bi bi-signpost-split"></i>
+          </a>
+          <a class="sidebar-link" href="https://www.linkedin.com/in/edison-flores-8a7b61268/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a class="sidebar-link" href="https://www.instagram.com/3d150n_f10r35/profilecard/?igsh=dXhlNGdzb3AzdGpm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+        </div>
+      </aside>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+          <div class="brand compact">
+            <img src="img/logo.png" alt="CALINAGUA">
+            <strong id="mobileMenuLabel">CALINAGUA</strong>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar" data-i18n-aria-label="close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <nav class="nav flex-column gap-1" aria-label="Navegación móvil" data-i18n-aria-label="mobileNavigation">
+            <button class="nav-link active" type="button" data-view="principal" data-bs-dismiss="offcanvas">
+              <i class="bi bi-grid-1x2"></i>
+              <span data-i18n="principal">Principal</span>
+            </button>
+            <button class="nav-link" type="button" data-view="fisicoquimicos" data-bs-dismiss="offcanvas">
+              <i class="bi bi-droplet-half"></i>
+              <span data-i18n="physicochemical">Fisicoquímicos</span>
+            </button>
+            <button class="nav-link" type="button" data-view="biologicos" data-bs-dismiss="offcanvas">
+              <i class="bi bi-bug"></i>
+              <span data-i18n="biological">Biológicos</span>
+            </button>
+          </nav>
+          <div class="sidebar-links mobile-links" aria-label="Referencias externas">
+            <a class="sidebar-link" href="https://moronabus.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="MoronaBus" title="MoronaBus">
+              <i class="bi bi-bus-front"></i>
+            </a>
+            <a class="sidebar-link" href="https://morona-santiago-vias-wj1s.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Morona Santiago Vial" title="Morona Santiago Vial">
+              <i class="bi bi-signpost-split"></i>
+            </a>
+            <a class="sidebar-link" href="https://www.linkedin.com/in/edison-flores-8a7b61268/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a class="sidebar-link" href="https://www.instagram.com/3d150n_f10r35/profilecard/?igsh=dXhlNGdzb3AzdGpm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="btn btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-label="Abrir menú" data-i18n-aria-label="openMenu">
+            <i class="bi bi-list"></i>
+          </button>
+          <button class="btn btn-icon d-none d-lg-inline-grid" id="sidebarToggle" type="button" aria-label="Colapsar apartados" data-i18n-aria-label="collapseSections">
+            <i class="bi bi-layout-sidebar-inset"></i>
+          </button>
+          <div class="page-title">
+            <p data-i18n="dashboard">Dashboard ambiental</p>
+            <h1 id="viewTitle">Principal</h1>
+          </div>
+          <div class="topbar-tools">
+            <div class="status-pill d-none d-md-flex" title="Hora local" data-i18n-title="localTime">
+              <i class="bi bi-clock"></i>
+              <span id="clockValue">--:--</span>
+            </div>
+            <div class="status-pill" title="Temperatura actual" data-i18n-title="currentTemperature">
+              <i class="bi bi-thermometer-half"></i>
+              <span id="weatherValue">-- C</span>
+            </div>
+            <select class="form-select form-select-sm tool-select" id="languageSelect" aria-label="Idioma" data-i18n-aria-label="language">
+              <option value="es">ES</option>
+              <option value="en">EN</option>
+            </select>
+            <button class="btn btn-icon" id="themeToggle" type="button" aria-label="Cambiar tema" data-i18n-aria-label="toggleTheme">
+              <i class="bi bi-moon-stars"></i>
+            </button>
+          </div>
+        </header>
+
+        <section class="content-grid">
+          <section class="kpi-grid" aria-label="Indicadores principales" data-i18n-aria-label="mainIndicators">
+            <article class="metric-card">
+              <span data-i18n="monitoredRivers">Ríos monitoreados</span>
+              <strong id="kpiRivers">0</strong>
+            </article>
+            <article class="metric-card">
+              <span data-i18n="samplePoints">Puntos registrados</span>
+              <strong id="kpiPoints">0</strong>
+            </article>
+            <article class="metric-card">
+              <span data-i18n="avgNsf">Promedio NSF</span>
+              <strong id="kpiNsf">--</strong>
+            </article>
+            <article class="metric-card">
+              <span data-i18n="predominantClass">Clasificación predominante</span>
+              <strong id="kpiClass">--</strong>
+            </article>
+          </section>
+
+          <section class="panel filters-panel">
+            <div class="panel-heading">
+              <div>
+                <p data-i18n="filters">Filtros</p>
+                <h2 data-i18n="queryData">Filtros de consulta</h2>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary" id="resetFilters" type="button">
+                <i class="bi bi-arrow-counterclockwise"></i>
+                <span data-i18n="reset">Limpiar</span>
+              </button>
+            </div>
+            <div class="filters-grid">
+              <label class="form-label">
+                <span data-i18n="section">Sección</span>
+                <select class="form-select" id="datasetSelect">
+                  <option value="biologicos" data-i18n="biologicalParameters">Parámetros biológicos</option>
+                  <option value="fisicoquimicos" data-i18n="physicochemicalParameters">Parámetros fisicoquímicos</option>
+                </select>
+              </label>
+              <label class="form-label">
+                <span data-i18n="river">Río</span>
+                <select class="form-select" id="riverSelect"></select>
+              </label>
+              <label class="form-label">
+                <span data-i18n="point">Punto</span>
+                <select class="form-select" id="pointSelect"></select>
+              </label>
+              <label class="form-label">
+                <span data-i18n="date">Fecha</span>
+                <select class="form-select" id="yearSelect"></select>
+              </label>
+              <label class="form-label">
+                <span data-i18n="sortBy">Ordenar por</span>
+                <select class="form-select" id="sortSelect"></select>
+              </label>
+              <label class="form-label">
+                <span data-i18n="order">Orden</span>
+                <select class="form-select" id="orderSelect">
+                  <option value="asc" data-i18n="ascending">Ascendente</option>
+                  <option value="desc" data-i18n="descending">Descendente</option>
+                </select>
+              </label>
+            </div>
+          </section>
+
+          <section class="selection-strip panel">
+            <div>
+              <p data-i18n="analysis">Análisis</p>
+              <h2 id="detailTitle" data-i18n="selectRecord">Selecciona un registro</h2>
+            </div>
+            <div id="detailContent" class="detail-content empty-state">
+              <i class="bi bi-cursor"></i>
+              <p data-i18n="selectRecordHint">Elige una fila de la tabla para ver el punto en el mapa y sus gráficas.</p>
+            </div>
+          </section>
+
+          <section class="panel info-panel">
+            <div class="panel-heading">
+              <div>
+                <p data-i18n="waterParameters">Parámetros</p>
+                <h2 id="infoPanelTitle" data-i18n="parameterInfo">Información de parámetros del agua</h2>
+              </div>
+            </div>
+            <div class="info-grid" id="parameterInfoGrid"></div>
+          </section>
+
+          <section class="data-map-grid">
+            <article class="panel table-panel">
+              <div class="panel-heading">
+                <div>
+                  <p data-i18n="records">Registros</p>
+                  <h2 id="tableTitle" data-i18n="tableRiverData">Tabla de datos del río</h2>
+                </div>
+                <span class="table-count" id="tableCount">0</span>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover align-middle" id="dataTable">
+                  <thead></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="panel map-panel">
+              <div class="panel-heading">
+                <div>
+                  <p data-i18n="territory">Territorio</p>
+                  <h2 data-i18n="interactiveMap">Mapa interactivo</h2>
+                </div>
+                <span class="badge text-bg-success" id="selectedBadge" data-i18n="noSelection">Sin selección</span>
+              </div>
+              <div id="map"></div>
+            </article>
+          </section>
+
+          <section class="panel charts-panel">
+            <div class="panel-heading">
+              <div>
+                <p data-i18n="statistics">Estadísticas</p>
+                <h2 id="chartPanelTitle" data-i18n="chartsHeading">Gráficas estadísticas de los parámetros</h2>
+              </div>
+            </div>
+            <div class="charts-grid" id="chartsGrid">
+              <div class="chart-box" id="chartPrimary"></div>
+              <div class="chart-box" id="chartSecondary"></div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="module" src="assets/js/app.js?v=32"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

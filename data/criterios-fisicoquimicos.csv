@@ -1,0 +1,7 @@
+campo_csv,parametro,expresado_como,unidad,criterio,tipo,limite_min,limite_max,nota
+Ph,pH,pH,pH,6-9,rango,6,9,
+Oxigeno disuelto,Oxigeno disuelto,OD,mg/l,>75% del OD Sat.,referencial,,,El CSV actual registra mg/l; el criterio normativo esta expresado como porcentaje de saturacion.
+Nitratos,Nitratos,N,mg/l,"10,0",maximo,,10,
+Turbiedad,Turbiedad,,UTN,"10,0",maximo,,10,
+DBO5,Demanda bioquimica de oxigeno 5 dias,DBO5,mg/l,<2mg/l,maximo,,2,
+Coliformes fecales,Coliformes fecales,NMP,NMP/100ml,20,maximo,,20,

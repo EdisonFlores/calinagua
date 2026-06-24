@@ -1,0 +1,30 @@
+{
+  "name": "CALINAGUA Dashboard",
+  "short_name": "CALINAGUA",
+  "description": "Dashboard de calidad del agua con indicadores fisicoquimicos y biologicos.",
+  "id": "./principal/",
+  "lang": "es-EC",
+  "start_url": "./principal/",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "window-controls-overlay", "browser"],
+  "background_color": "#f6f8fb",
+  "theme_color": "#0f766e",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "categories": ["education", "utilities"],
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
