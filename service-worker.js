@@ -1,9 +1,12 @@
-const CACHE_NAME = "calinagua-online-v32";
+const CACHE_NAME = "calinagua-online-v33";
 const OFFLINE_URL = "./offline.html";
 const CORE_ASSETS = [
   OFFLINE_URL,
   "./manifest.webmanifest",
-  "./img/logo.png"
+  "./img/logo.png",
+  "./img/icons/icon-192.png",
+  "./img/icons/icon-512.png",
+  "./img/icons/maskable-512.png"
 ];
 
 self.addEventListener("install", (event) => {
