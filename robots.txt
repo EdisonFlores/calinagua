@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://edisonflores.github.io/calinagua/sitemap.xml
+Sitemap: https://calinagua.vercel.app/sitemap.xml

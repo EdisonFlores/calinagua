@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://edisonflores.github.io/calinagua/</loc>
+    <loc>https://calinagua.vercel.app/</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://edisonflores.github.io/calinagua/principal/</loc>
+    <loc>https://calinagua.vercel.app/principal/</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://edisonflores.github.io/calinagua/fisicoquimicos/</loc>
+    <loc>https://calinagua.vercel.app/fisicoquimicos/</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://edisonflores.github.io/calinagua/biologicos/</loc>
+    <loc>https://calinagua.vercel.app/biologicos/</loc>
     <lastmod>2026-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
