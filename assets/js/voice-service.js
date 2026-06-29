@@ -8,6 +8,7 @@ let button;
 let lastElement;
 let lastText = "";
 let hoverTimer;
+let lastSpokenAt = 0;
 
 export function initVoiceAssistant() {
   button = document.getElementById("voiceAssistantToggle");
@@ -32,6 +33,8 @@ export function initVoiceAssistant() {
   });
 
   document.addEventListener("pointerover", handlePointerOver, true);
+  document.addEventListener("pointerdown", handlePointerDown, true);
+  document.addEventListener("focusin", handleFocusIn, true);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) window.speechSynthesis.cancel();
   });
@@ -39,19 +42,38 @@ export function initVoiceAssistant() {
 
 function handlePointerOver(event) {
   if (!state.voiceAssistant || event.pointerType === "touch") return;
+  queueRead(event.target, 220);
+}
 
-  const element = findReadableElement(event.target);
-  if (!element || element === lastElement) return;
+function handlePointerDown(event) {
+  if (!state.voiceAssistant) return;
+  if (event.pointerType !== "touch" && !window.matchMedia("(pointer: coarse)").matches) return;
+
+  queueRead(event.target, 0, true);
+}
+
+function handleFocusIn(event) {
+  if (!state.voiceAssistant) return;
+  queueRead(event.target, 0, true);
+}
+
+function queueRead(target, delay = 0, allowSameElement = false) {
+  const element = findReadableElement(target);
+  if (!element || (!allowSameElement && element === lastElement)) return;
 
   const text = getReadableText(element);
-  if (!text || text === lastText) return;
+  if (!text) return;
+
+  const now = Date.now();
+  if (text === lastText && now - lastSpokenAt < 900) return;
 
   window.clearTimeout(hoverTimer);
   hoverTimer = window.setTimeout(() => {
     lastElement = element;
     lastText = text;
+    lastSpokenAt = Date.now();
     speak(text);
-  }, 220);
+  }, delay);
 }
 
 function findReadableElement(target) {
