@@ -1,4 +1,4 @@
-﻿import { WEATHER_LOCATION } from "./config.js?v=32";
+﻿import { WEATHER_LOCATION } from "./config.js?v=35";
 
 export async function initWeather() {
   const target = document.getElementById("weatherValue");

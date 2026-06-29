@@ -77,6 +77,40 @@ export const FISICO_REFERENCES = {
 
 export const CRITERIA_PATH = "data/criterios-fisicoquimicos.csv";
 
+export const RIVER_GEOJSON_BASE_PATH = "data/riosms";
+
+export const RIVER_GEOJSON_FILES = {
+  "RIO BLANCO": "Río Blanco.geojson",
+  "RIO CHAPIZA": "Río Chapiza.geojson",
+  "RIO CUYES": "Rio Cuyes.geojson",
+  "RIO HUASAGA": "Río Huasaga.geojson",
+  "RIO JURUMBAINO": "Río Jurumbaino.geojson",
+  "RIO KALAGLAS": "Río Kalaglas.geojson",
+  "RIO LUSHIN": "Río Lushin.geojson",
+  "RIO MACUMA": "Río Macuma.geojson",
+  "RIO MANGOZISA": "Rio Mangozisa.geojson",
+  "RIO MIRIUMI": "Río Miriumi.geojson",
+  "RIO MORONA": "Río Morona.geojson",
+  "RIO NAMANGOZA": "Río Namangoza.geojson",
+  "RIO PALORA": "Río Palora.geojson",
+  "RIO PAN DE AZUCAR": "Río Pan de Azucar.geojson",
+  "RIO PASTAZA": "Río Pastaza.geojson",
+  "RIO PAUTE": "Río Paute.geojson",
+  "RIO PUCHIMI": "Río Puchimi.geojson",
+  "RIO SANGAY": "Río Sangay.geojson",
+  "RIO SANTIAGO": "Río Santiago.geojson",
+  "RIO TUNA": "Río Tuna.geojson",
+  "RIO TUNA CHIGUAZA": "RIO TUNA CHIGUAZA.geojson",
+  "RIO TUTANANGOZA": "RioTutanangoza.geojson",
+  "RIO TZURIN": "Río Tzurin.geojson",
+  "RIO UPANO": "Rio Upano.geojson",
+  "RIO WAWAIM GRANDE": "Río Wawaim Grande.geojson",
+  "RIO YAAPI": "Río Yaapi.geojson",
+  "RIO YUNGANZA": "Río Yunganza.geojson",
+  "RIO YUQUIPA": "RIO YUQUIPA.geojson",
+  "RIO ZAMORA": "Río Zamora.geojson"
+};
+
 export const DEFAULT_CENTER = [-2.3, -78.1];
 
 export const WEATHER_LOCATION = {

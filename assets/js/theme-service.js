@@ -1,4 +1,4 @@
-﻿import { state } from "./state.js?v=32";
+﻿import { state } from "./state.js?v=35";
 
 const STORAGE_KEY = "calinagua-theme";
 

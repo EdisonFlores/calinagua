@@ -1,4 +1,4 @@
-import { CRITERIA_PATH, DATASETS } from "./config.js?v=32";
+import { CRITERIA_PATH, DATASETS } from "./config.js?v=35";
 
 export function normalizeKey(key) {
   return fixEncoding(key)

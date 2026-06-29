@@ -1,7 +1,7 @@
-import { DATASETS, FISICO_REFERENCES } from "./config.js?v=32";
-import { parseNumber } from "./data-service.js?v=32";
-import { state } from "./state.js?v=32";
-import { t, translateField } from "./i18n-service.js?v=32";
+import { DATASETS, FISICO_REFERENCES } from "./config.js?v=35";
+import { parseNumber } from "./data-service.js?v=35";
+import { state } from "./state.js?v=35";
+import { t, translateField } from "./i18n-service.js?v=35";
 
 const chartsGridId = "chartsGrid";
 const chartRenderers = new Map();

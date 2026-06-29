@@ -1,4 +1,4 @@
-import { DATASETS } from "./config.js?v=32";
+import { DATASETS } from "./config.js?v=35";
 import {
   filterAndSortData,
   getAvailableCriteria,
@@ -6,11 +6,11 @@ import {
   summarizeFisicoquimicos,
   uniqueValues,
   uniqueYears
-} from "./data-service.js?v=32";
-import { focusRecord, invalidateMap, renderMapPoints } from "./map-service.js?v=32";
-import { drawOverviewCharts, drawRecordCharts } from "./chart-service.js?v=32";
-import { state } from "./state.js?v=32";
-import { t, translateField } from "./i18n-service.js?v=32";
+} from "./data-service.js?v=35";
+import { focusRecord, invalidateMap, renderMapPoints } from "./map-service.js?v=35";
+import { drawOverviewCharts, drawRecordCharts } from "./chart-service.js?v=35";
+import { state } from "./state.js?v=35";
+import { t, translateField } from "./i18n-service.js?v=35";
 
 const viewTitleKeys = {
   principal: "principal",

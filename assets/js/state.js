@@ -16,7 +16,8 @@
   selectedRecord: null,
   chartsReady: false,
   language: "es",
-  theme: "light"
+  theme: "light",
+  voiceAssistant: false
 };
 
 

@@ -1,4 +1,4 @@
-import { state } from "./state.js?v=32";
+import { state } from "./state.js?v=35";
 
 const STORAGE_KEY = "calinagua-language";
 
@@ -41,6 +41,11 @@ const dictionary = {
     localTime: "Hora local",
     currentTemperature: "Temperatura actual",
     language: "Idioma",
+    voiceAssistant: "Asistente de voz",
+    voiceAssistantEnabled: "Asistente de voz activado",
+    voiceAssistantDisabled: "Asistente de voz desactivado",
+    voiceAssistantNotSupported: "El asistente de voz no está disponible en este navegador",
+    interactiveTutorial: "Tutorial interactivo",
     toggleTheme: "Cambiar tema",
     openMenu: "Abrir menú",
     collapseSections: "Colapsar apartados",
@@ -201,6 +206,11 @@ const dictionary = {
     localTime: "Local time",
     currentTemperature: "Current temperature",
     language: "Language",
+    voiceAssistant: "Voice assistant",
+    voiceAssistantEnabled: "Voice assistant enabled",
+    voiceAssistantDisabled: "Voice assistant disabled",
+    voiceAssistantNotSupported: "Voice assistant is not available in this browser",
+    interactiveTutorial: "Interactive tutorial",
     toggleTheme: "Change theme",
     openMenu: "Open menu",
     collapseSections: "Collapse sections",

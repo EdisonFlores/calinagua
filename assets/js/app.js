@@ -1,13 +1,15 @@
-﻿import { loadAllData } from "./data-service.js?v=32";
-import { initMap } from "./map-service.js?v=32";
-import { loadCharts } from "./chart-service.js?v=32";
-import { initClock } from "./clock-service.js?v=32";
-import { initWeather } from "./weather-service.js?v=32";
-import { initTheme } from "./theme-service.js?v=32";
-import { initI18n } from "./i18n-service.js?v=32";
-import { state } from "./state.js?v=32";
-import { initUi, renderApp } from "./ui-service.js?v=32";
-import { t } from "./i18n-service.js?v=32";
+﻿import { loadAllData } from "./data-service.js?v=35";
+import { initMap } from "./map-service.js?v=35";
+import { loadCharts } from "./chart-service.js?v=35";
+import { initClock } from "./clock-service.js?v=35";
+import { initWeather } from "./weather-service.js?v=35";
+import { initTheme } from "./theme-service.js?v=35";
+import { initI18n } from "./i18n-service.js?v=35";
+import { initTutorial } from "./tutorial-service.js?v=35";
+import { initVoiceAssistant } from "./voice-service.js?v=35";
+import { state } from "./state.js?v=35";
+import { initUi, renderApp } from "./ui-service.js?v=35";
+import { t } from "./i18n-service.js?v=35";
 
 async function bootstrap() {
   configurePageMode();
@@ -17,6 +19,8 @@ async function bootstrap() {
     renderApp();
     updateConnectivityStatus();
   });
+  initTutorial();
+  initVoiceAssistant();
   initConnectivityStatus();
   initMap();
   initUi();
