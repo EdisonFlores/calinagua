@@ -1,4 +1,5 @@
-﻿export const DATASETS = {
+﻿// Configuracion compartida: rutas de datos, parametros, criterios y archivos GeoJSON.
+export const DATASETS = {
   biologicos: {
     label: "Parámetros biológicos",
     path: "data/tabla-biologica.csv",

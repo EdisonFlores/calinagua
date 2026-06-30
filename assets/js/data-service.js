@@ -1,5 +1,7 @@
+﻿// Carga y normaliza CSV/criterios para que las vistas consuman datos consistentes.
 import { CRITERIA_PATH, DATASETS } from "./config.js?v=35";
 
+// Funcion normalizeKey: normaliza nombres de columnas CSV.
 export function normalizeKey(key) {
   return fixEncoding(key)
     .trim()
@@ -8,6 +10,7 @@ export function normalizeKey(key) {
     .replace(/\s+/g, " ");
 }
 
+// Funcion fixEncoding: corrige caracteres mal codificados frecuentes.
 export function fixEncoding(value) {
   const text = String(value || "");
   if (!/[\u00c3\u00c2]/.test(text)) return text;
@@ -19,6 +22,7 @@ export function fixEncoding(value) {
   }
 }
 
+// Funcion parseNumber: convierte texto numerico a numero JS.
 export function parseNumber(value) {
   if (value === null || value === undefined || value === "") return null;
   const normalized = String(value).replace(",", ".").replace(/[^\d.-]/g, "");
@@ -26,12 +30,14 @@ export function parseNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+// Funcion loadCsv: descarga y parsea un CSV.
 export async function loadCsv(path) {
   const response = await fetch(path);
   const text = await response.text();
   return parseCsv(text).map(normalizeRecord);
 }
 
+// Funcion loadAllData: carga todos los datasets necesarios.
 export async function loadAllData() {
   const [biologicos, fisicoquimicos, criteria] = await Promise.all([
     loadCsv(DATASETS.biologicos.path),
@@ -42,6 +48,7 @@ export async function loadAllData() {
   return { biologicos, fisicoquimicos, criteria };
 }
 
+// Funcion normalizeRecord: normaliza claves y valores de un registro.
 export function normalizeRecord(record) {
   return Object.entries(record).reduce((current, [key, value]) => {
     const cleanKey = normalizeKey(key);
@@ -52,20 +59,24 @@ export function normalizeRecord(record) {
   }, {});
 }
 
+// Funcion uniqueValues: obtiene valores unicos ordenados.
 export function uniqueValues(data, field) {
   return [...new Set(data.map((item) => item[field]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
 }
 
+// Funcion uniqueYears: obtiene anos unicos desde fechas.
 export function uniqueYears(data) {
   return [...new Set(data.map((item) => getYear(item.FECHA)).filter(Boolean))].sort((a, b) => a.localeCompare(b));
 }
 
+// Funcion getYear: extrae ano desde una fecha.
 export function getYear(value) {
   const text = String(value || "").trim();
   const match = text.match(/\b(19|20)\d{2}\b/);
   return match ? match[0] : "";
 }
 
+// Funcion filterAndSortData: filtra y ordena registros.
 export function filterAndSortData(data, filters) {
   const filtered = data.filter((item) => {
     if (filters.river && item.RIO !== filters.river) return false;
@@ -87,6 +98,7 @@ export function filterAndSortData(data, filters) {
   });
 }
 
+// Funcion getCoordinates: extrae coordenadas validas de un registro.
 export function getCoordinates(record) {
   const latitude = parseNumber(record["COORD- X"]);
   const longitude = parseNumber(record["COORD- Y"]);
@@ -95,6 +107,7 @@ export function getCoordinates(record) {
   return [latitude, longitude];
 }
 
+// Funcion summarizeFisicoquimicos: calcula resumen fisicoquimico.
 export function summarizeFisicoquimicos(data) {
   const nsfValues = data.map((item) => parseNumber(item["CALIDAD AGUA NSF"])).filter((value) => value !== null);
   const avgNsf = nsfValues.length ? nsfValues.reduce((sum, value) => sum + value, 0) / nsfValues.length : null;
@@ -107,6 +120,7 @@ export function summarizeFisicoquimicos(data) {
   };
 }
 
+// Funcion getMode: obtiene el valor mas frecuente.
 export function getMode(values) {
   const counts = values.reduce((current, value) => {
     current[value] = (current[value] || 0) + 1;
@@ -116,10 +130,12 @@ export function getMode(values) {
   return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || "--";
 }
 
+// Funcion getAvailableCriteria: filtra criterios aplicables al registro.
 export function getAvailableCriteria(criteria, record) {
   return criteria.filter((criterion) => Object.prototype.hasOwnProperty.call(record, criterion.campo_csv));
 }
 
+// Funcion parseCsv: parsea CSV respetando comillas.
 function parseCsv(text) {
   const rows = [];
   let row = [];

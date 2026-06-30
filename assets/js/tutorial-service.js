@@ -1,3 +1,4 @@
+﻿// Tutorial interactivo por apartado con resaltado responsive de elementos clave.
 import { state } from "./state.js?v=35";
 
 let button;
@@ -19,12 +20,12 @@ const content = {
       {
         selector: ".topbar",
         title: "Barra superior",
-        text: "Aquí encuentras hora, temperatura, idioma, asistente de voz, tutorial y modo claro u oscuro."
+        text: "AquÃ­ encuentras hora, temperatura, idioma, asistente de voz, tutorial y modo claro u oscuro."
       },
       {
         selector: ".filters-panel",
         title: "Filtros principales",
-        text: "En Principal puedes cambiar entre parámetros biológicos y fisicoquímicos, filtrar ríos y ordenar registros."
+        text: "En Principal puedes cambiar entre parÃ¡metros biolÃ³gicos y fisicoquÃ­micos, filtrar rÃ­os y ordenar registros."
       },
       {
         selector: ".table-panel",
@@ -33,72 +34,72 @@ const content = {
       },
       {
         selector: ".map-panel",
-        title: "Mapa y río",
-        text: "El mapa muestra los puntos de muestreo. Si existe GeoJSON del río, se dibuja su trazado y el punto seleccionado se resalta."
+        title: "Mapa y rÃ­o",
+        text: "El mapa muestra los puntos de muestreo. Si existe GeoJSON del rÃ­o, se dibuja su trazado y el punto seleccionado se resalta."
       },
       {
         selector: ".selection-strip",
         title: "Resumen del punto",
-        text: "Después de seleccionar un registro, aquí verás los datos clave y criterios del punto elegido."
+        text: "DespuÃ©s de seleccionar un registro, aquÃ­ verÃ¡s los datos clave y criterios del punto elegido."
       },
       {
         selector: ".charts-panel",
-        title: "Gráficas comparativas",
-        text: "En Principal las gráficas comparan el valor obtenido con referencias o criterios admisibles."
+        title: "GrÃ¡ficas comparativas",
+        text: "En Principal las grÃ¡ficas comparan el valor obtenido con referencias o criterios admisibles."
       }
     ],
     fisicoquimicos: [
       {
         selector: ".filters-panel",
         title: "Filtros progresivos",
-        text: "Primero selecciona un río. Luego se habilita el punto y después el año disponible para ese punto."
+        text: "Primero selecciona un rÃ­o. Luego se habilita el punto y despuÃ©s el aÃ±o disponible para ese punto."
       },
       {
         selector: ".table-panel",
         title: "Tabla filtrada",
-        text: "Aquí aparecen los registros filtrados. En apartados secundarios la tabla es de consulta y no se hace clic en sus filas."
+        text: "AquÃ­ aparecen los registros filtrados. En apartados secundarios la tabla es de consulta y no se hace clic en sus filas."
       },
       {
         selector: ".map-panel",
-        title: "Mapa fisicoquímico",
-        text: "El mapa mantiene los puntos visibles y dibuja el trazado del río cuando hay GeoJSON disponible."
+        title: "Mapa fisicoquÃ­mico",
+        text: "El mapa mantiene los puntos visibles y dibuja el trazado del rÃ­o cuando hay GeoJSON disponible."
       },
       {
         selector: ".charts-panel",
-        title: "Evolución temporal",
-        text: "Estas gráficas muestran cómo cambian los parámetros fisicoquímicos con el tiempo según los filtros."
+        title: "EvoluciÃ³n temporal",
+        text: "Estas grÃ¡ficas muestran cÃ³mo cambian los parÃ¡metros fisicoquÃ­micos con el tiempo segÃºn los filtros."
       },
       {
         selector: ".info-panel",
-        title: "Criterios de interpretación",
-        text: "Este bloque resume cómo interpretar pH, oxígeno, nutrientes, turbiedad, DBO5 y coliformes."
+        title: "Criterios de interpretaciÃ³n",
+        text: "Este bloque resume cÃ³mo interpretar pH, oxÃ­geno, nutrientes, turbiedad, DBO5 y coliformes."
       }
     ],
     biologicos: [
       {
         selector: ".filters-panel",
-        title: "Filtros biológicos",
-        text: "Selecciona río, punto y año para consultar los resultados biológicos disponibles."
+        title: "Filtros biolÃ³gicos",
+        text: "Selecciona rÃ­o, punto y aÃ±o para consultar los resultados biolÃ³gicos disponibles."
       },
       {
         selector: ".table-panel",
         title: "Resultados de la muestra",
-        text: "La tabla muestra identificación, río, punto y fecha. En este apartado los registros no son clicables."
+        text: "La tabla muestra identificaciÃ³n, rÃ­o, punto y fecha. En este apartado los registros no son clicables."
       },
       {
         selector: ".map-panel",
-        title: "Mapa biológico",
-        text: "Los puntos se conservan sobre el mapa y el trazado del río aparece cuando existe GeoJSON."
+        title: "Mapa biolÃ³gico",
+        text: "Los puntos se conservan sobre el mapa y el trazado del rÃ­o aparece cuando existe GeoJSON."
       },
       {
         selector: ".charts-panel",
-        title: "Indicadores biológicos",
-        text: "Aquí revisas riqueza absoluta, diversidad de Shannon, BMWP/Col y evolución de la calidad biológica."
+        title: "Indicadores biolÃ³gicos",
+        text: "AquÃ­ revisas riqueza absoluta, diversidad de Shannon, BMWP/Col y evoluciÃ³n de la calidad biolÃ³gica."
       },
       {
         selector: ".info-panel",
-        title: "Lectura biológica",
-        text: "Los niveles altos se relacionan con aguas limpias y los niveles bajos con mayor contaminación."
+        title: "Lectura biolÃ³gica",
+        text: "Los niveles altos se relacionan con aguas limpias y los niveles bajos con mayor contaminaciÃ³n."
       }
     ]
   },
@@ -134,6 +135,7 @@ const content = {
   }
 };
 
+// Funcion initTutorial: prepara el tutorial interactivo.
 export function initTutorial() {
   button = document.getElementById("tutorialToggle");
   if (!button) return;
@@ -150,6 +152,7 @@ export function initTutorial() {
   });
 }
 
+// Funcion startTutorial: abre el tutorial de la vista actual.
 function startTutorial() {
   activeSteps = stepsForCurrentView();
   activeIndex = 0;
@@ -157,11 +160,13 @@ function startTutorial() {
   renderStep();
 }
 
+// Funcion stepsForCurrentView: obtiene los pasos configurados para la vista activa.
 function stepsForCurrentView() {
   const lang = state.language === "en" ? "en" : "es";
   return content[lang][state.activeView] || content[lang].principal;
 }
 
+// Funcion ensureElements: crea los elementos DOM del tutorial si no existen.
 function ensureElements() {
   if (!overlay) {
     overlay = document.createElement("div");
@@ -179,6 +184,7 @@ function ensureElements() {
   }
 }
 
+// Funcion renderStep: pinta el paso actual del tutorial.
 function renderStep() {
   const labels = labelsForCurrentLanguage();
   const step = activeSteps[activeIndex];
@@ -213,6 +219,7 @@ function renderStep() {
   window.setTimeout(positionCard, 240);
 }
 
+// Funcion nextStep: avanza al siguiente paso del tutorial.
 function nextStep() {
   if (activeIndex >= activeSteps.length - 1) {
     closeTutorial();
@@ -223,12 +230,14 @@ function nextStep() {
   renderStep();
 }
 
+// Funcion previousStep: retrocede al paso anterior del tutorial.
 function previousStep() {
   if (activeIndex === 0) return;
   activeIndex -= 1;
   renderStep();
 }
 
+// Funcion closeTutorial: cierra el tutorial y limpia resaltados.
 function closeTutorial() {
   highlightedElement?.classList.remove("tutorial-highlight");
   highlightedElement = null;
@@ -236,6 +245,7 @@ function closeTutorial() {
   card?.classList.remove("is-visible");
 }
 
+// Funcion positionCard: posiciona la tarjeta del tutorial segun pantalla y objetivo.
 function positionCard() {
   if (!card || !highlightedElement) return;
 
@@ -264,11 +274,13 @@ function positionCard() {
   card.style.top = `${top}px`;
 }
 
+// Funcion labelsForCurrentLanguage: selecciona los textos del tutorial segun idioma.
 function labelsForCurrentLanguage() {
   const lang = state.language === "en" ? "en" : "es";
   return content[lang];
 }
 
+// Funcion escapeHtml: escapa texto antes de insertarlo como HTML.
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")

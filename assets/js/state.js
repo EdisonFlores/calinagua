@@ -1,4 +1,5 @@
-﻿export const state = {
+﻿// Estado global minimo que comparten filtros, mapa, graficas, tema e idioma.
+export const state = {
   activeView: "principal",
   dataset: "biologicos",
   data: {

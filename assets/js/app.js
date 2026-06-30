@@ -1,16 +1,18 @@
-﻿import { loadAllData } from "./data-service.js?v=35";
+﻿// Punto de entrada: inicializa servicios, carga datos y coordina el renderizado general.
+import { loadAllData } from "./data-service.js?v=35";
 import { initMap } from "./map-service.js?v=35";
 import { loadCharts } from "./chart-service.js?v=35";
 import { initClock } from "./clock-service.js?v=35";
 import { initWeather } from "./weather-service.js?v=35";
 import { initTheme } from "./theme-service.js?v=35";
-import { initI18n } from "./i18n-service.js?v=35";
+import { initI18n } from "./i18n-service.js?v=36";
 import { initTutorial } from "./tutorial-service.js?v=35";
 import { initVoiceAssistant } from "./voice-service.js?v=36";
 import { state } from "./state.js?v=35";
 import { initUi, renderApp } from "./ui-service.js?v=35";
-import { t } from "./i18n-service.js?v=35";
+import { t } from "./i18n-service.js?v=36";
 
+// Funcion bootstrap: orquesta el arranque completo de la aplicacion.
 async function bootstrap() {
   configurePageMode();
   initTheme();
@@ -36,6 +38,7 @@ async function bootstrap() {
   registerServiceWorker();
 }
 
+// Funcion configurePageMode: define la vista activa segun la pagina HTML.
 function configurePageMode() {
   const page = document.body.dataset.page || "principal";
   state.activeView = page;
@@ -49,11 +52,13 @@ function configurePageMode() {
   }
 }
 
+// Funcion registerServiceWorker: registra el service worker de la PWA.
 function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.register("./service-worker.js").catch(() => {});
 }
 
+// Funcion initConnectivityStatus: crea el aviso visual de conectividad.
 function initConnectivityStatus() {
   const banner = document.createElement("div");
   banner.className = "connectivity-banner";
@@ -66,6 +71,7 @@ function initConnectivityStatus() {
   updateConnectivityStatus();
 }
 
+// Funcion updateConnectivityStatus: actualiza el estado online u offline visible.
 function updateConnectivityStatus() {
   const banner = document.querySelector(".connectivity-banner");
   if (!banner) return;

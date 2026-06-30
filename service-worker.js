@@ -1,3 +1,4 @@
+﻿// Service worker orientado a PWA online: cachea solo recursos basicos y avisa si no hay conexion.
 const CACHE_NAME = "calinagua-online-v33";
 const OFFLINE_URL = "./offline.html";
 const CORE_ASSETS = [
@@ -9,11 +10,13 @@ const CORE_ASSETS = [
   "./img/icons/maskable-512.png"
 ];
 
+// Evento install: guarda los recursos minimos necesarios para mostrar la pantalla offline.
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)));
   self.skipWaiting();
 });
 
+// Evento activate: elimina caches antiguos y toma control inmediato de las paginas abiertas.
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
@@ -23,6 +26,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Evento fetch: prioriza internet y usa el cache solo como respaldo cuando no hay conexion.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
@@ -44,10 +48,12 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
+// Funcion isCoreAsset: comprueba si una URL pertenece al cache basico.
 function isCoreAsset(url) {
   return CORE_ASSETS.some((asset) => new URL(asset, self.location.href).href === url);
 }
 
+// Funcion offlineResponse: responde texto simple cuando no hay conexion.
 function offlineResponse() {
   return new Response("CALINAGUA requiere conexion a internet.", {
     status: 503,

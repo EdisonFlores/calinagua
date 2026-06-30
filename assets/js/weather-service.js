@@ -1,5 +1,7 @@
-﻿import { WEATHER_LOCATION } from "./config.js?v=35";
+﻿// Consulta Open-Meteo y actualiza la temperatura mostrada en el dashboard.
+import { WEATHER_LOCATION } from "./config.js?v=35";
 
+// Funcion initWeather: consulta temperatura desde Open-Meteo.
 export async function initWeather() {
   const target = document.getElementById("weatherValue");
   const url = new URL("https://api.open-meteo.com/v1/forecast");

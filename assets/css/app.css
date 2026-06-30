@@ -1,3 +1,4 @@
+/* Variables globales: paleta, superficies y dimensiones base del dashboard. */
 :root {
   --sidebar-width: 280px;
   --surface: #ffffff;
@@ -25,11 +26,13 @@
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
 }
 
+/* Reset visual minimo: evita desplazamientos por medidas y mantiene espaciado tipografico estable. */
 * {
   letter-spacing: 0;
   box-sizing: border-box;
 }
 
+/* Base de pagina: fondo ambiental suave y tipografia del sistema. */
 body {
   min-height: 100vh;
   margin: 0;
@@ -47,6 +50,7 @@ body {
     var(--bs-body-bg);
 }
 
+/* Layout principal: sidebar fijo en escritorio y area de trabajo fluida. */
 .app-shell {
   min-height: 100vh;
   display: grid;
@@ -99,6 +103,7 @@ body {
   font-size: 1.1rem;
 }
 
+/* Marca CALINAGUA: logo y textos del encabezado lateral. */
 .brand {
   display: flex;
   align-items: center;
@@ -128,6 +133,7 @@ body {
   height: 36px;
 }
 
+/* Navegacion: botones laterales activos y estados hover. */
 .nav-link {
   display: flex;
   align-items: center;
@@ -152,9 +158,10 @@ body {
   color: #7dd3c7;
 }
 
+/* Referencias inferiores: proyectos relacionados, redes y descarga Android. */
 .sidebar-links {
   display: grid;
-  grid-template-columns: repeat(4, 38px);
+  grid-template-columns: repeat(5, 38px);
   gap: 10px;
   margin-top: auto;
   padding-top: 18px;
@@ -187,6 +194,16 @@ body {
   font-size: 1.05rem;
 }
 
+.download-apk-link {
+  color: #16a34a;
+}
+
+.download-apk-link:hover,
+.download-apk-link:focus {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
 .sidebar-collapsed .sidebar-links {
   grid-template-columns: 38px;
   justify-content: center;
@@ -202,6 +219,7 @@ body {
   margin-top: auto;
 }
 
+/* Aviso de conectividad: informa cuando la PWA queda sin internet. */
 .connectivity-banner {
   position: fixed;
   right: 16px;
@@ -247,6 +265,7 @@ body {
   min-width: 0;
 }
 
+/* Encabezado superior: controles transversales de idioma, voz, tutorial y tema. */
 .topbar {
   position: sticky;
   top: 0;
@@ -293,6 +312,7 @@ body {
   min-width: 0;
 }
 
+/* Botones iconicos reutilizables en header y controles de graficas. */
 .btn-icon {
   width: 40px;
   height: 40px;
@@ -315,6 +335,7 @@ body {
   color: #ccfbf1;
 }
 
+/* Asistente de voz: estado activo, deshabilitado y variante para modo oscuro. */
 .voice-assistant-toggle.is-active {
   color: #ffffff;
   background: var(--brand);
@@ -333,6 +354,7 @@ body {
   border-color: #5eead4;
 }
 
+/* Tutorial interactivo: capa, resaltado del elemento y tarjeta de pasos. */
 .tutorial-overlay {
   position: fixed;
   inset: 0;
@@ -441,6 +463,7 @@ body {
   min-width: 112px;
 }
 
+/* Controles de formulario: filtros, idioma y selects responsivos. */
 .status-pill {
   align-items: center;
   gap: 8px;
@@ -481,6 +504,7 @@ body {
   border-color: rgba(226, 232, 240, 0.22);
 }
 
+/* Contenido del dashboard: tarjetas KPI, filtros, tabla, mapa y graficas. */
 .content-grid {
   display: grid;
   gap: 20px;
@@ -494,6 +518,7 @@ body {
   gap: 14px;
 }
 
+/* Paneles y tarjetas: superficies reutilizables del dashboard. */
 .metric-card,
 .panel {
   background: var(--surface);
@@ -540,6 +565,7 @@ body {
   color: var(--text-strong);
 }
 
+/* Filtros: grilla autoajustable y visibilidad progresiva de controles. */
 .filters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
@@ -579,6 +605,7 @@ body {
   min-width: 0;
 }
 
+/* Mapa Leaflet: contenedor, capas y resaltado del punto de muestreo seleccionado. */
 .map-panel {
   position: relative;
   overflow: hidden;
@@ -633,6 +660,7 @@ body {
   z-index: 5;
 }
 
+/* Detalle del registro: resumen, criterios y estados de seleccion. */
 .detail-content {
   min-height: 0;
 }
@@ -738,6 +766,7 @@ body {
   color: var(--text-soft);
 }
 
+/* Informacion de parametros: tarjetas educativas sobre calidad del agua. */
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
@@ -790,6 +819,7 @@ body {
   background: #dc2626;
 }
 
+/* Graficas Google Charts: tarjetas, botones de ayuda y modal de ampliacion. */
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
@@ -924,6 +954,7 @@ body {
   max-width: 32ch;
 }
 
+/* Tablas: encabezado fijo, filas seleccionables y estados de calidad. */
 .table-panel {
   overflow: hidden;
 }
@@ -981,6 +1012,7 @@ body {
   font-weight: 800;
 }
 
+/* Estados de calidad: colores de cumplimiento o revision. */
 .quality-badge {
   display: inline-flex;
   align-items: center;
@@ -1022,6 +1054,7 @@ body {
   background: rgba(153, 27, 27, 0.45);
 }
 
+/* Adaptaciones responsivas para tabletas y pantallas medianas. */
 @media (max-width: 1199px) {
   .kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1052,6 +1085,7 @@ body {
   }
 }
 
+/* Adaptaciones moviles: herramientas en grilla y bloques de ancho completo. */
 @media (max-width: 767px) {
   .tutorial-card {
     max-height: min(76vh, 520px);

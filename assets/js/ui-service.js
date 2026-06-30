@@ -1,3 +1,4 @@
+﻿// Renderiza la interfaz: filtros, tablas, tarjetas informativas, seleccion y navegacion.
 import { DATASETS } from "./config.js?v=35";
 import {
   filterAndSortData,
@@ -10,7 +11,7 @@ import {
 import { focusRecord, invalidateMap, renderMapPoints } from "./map-service.js?v=35";
 import { drawOverviewCharts, drawRecordCharts } from "./chart-service.js?v=35";
 import { state } from "./state.js?v=35";
-import { t, translateField } from "./i18n-service.js?v=35";
+import { t, translateField } from "./i18n-service.js?v=36";
 
 const viewTitleKeys = {
   principal: "principal",
@@ -18,11 +19,13 @@ const viewTitleKeys = {
   biologicos: "biological"
 };
 
+// Funcion initUi: conecta eventos iniciales de navegacion y filtros.
 export function initUi() {
   bindNavigation();
   bindFilters();
 }
 
+// Funcion renderApp: sincroniza estado y vuelve a pintar la interfaz.
 export function renderApp() {
   syncDatasetWithView();
   renderNavigation();
@@ -31,6 +34,7 @@ export function renderApp() {
   invalidateMap();
 }
 
+// Funcion bindNavigation: asocia botones de navegacion con cada apartado.
 function bindNavigation() {
   document.querySelectorAll("[data-view]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -51,6 +55,7 @@ function bindNavigation() {
   });
 }
 
+// Funcion bindFilters: asocia los filtros con el estado global.
 function bindFilters() {
   document.getElementById("datasetSelect").addEventListener("change", (event) => {
     state.dataset = event.target.value;
@@ -111,6 +116,7 @@ function bindFilters() {
   });
 }
 
+// Funcion syncDatasetWithView: mantiene dataset y vista trabajando juntos.
 function syncDatasetWithView() {
   if (state.activeView === "fisicoquimicos") state.dataset = "fisicoquimicos";
   if (state.activeView === "biologicos") state.dataset = "biologicos";
@@ -122,6 +128,7 @@ function syncDatasetWithView() {
   }
 }
 
+// Funcion renderNavigation: marca la navegacion activa.
 function renderNavigation() {
   document.querySelectorAll("[data-view]").forEach((button) => {
     button.classList.toggle("active", button.dataset.view === state.activeView);
@@ -130,6 +137,7 @@ function renderNavigation() {
   document.getElementById("viewTitle").textContent = t(viewTitleKeys[state.activeView]);
 }
 
+// Funcion renderFilters: rellena selects segun filtros disponibles.
 function renderFilters() {
   const data = state.data[state.dataset];
   const rivers = uniqueValues(data, "RIO");
@@ -176,6 +184,7 @@ function renderFilters() {
   document.getElementById("orderSelect").closest(".form-label").classList.toggle("filter-hidden", state.activeView !== "principal");
 }
 
+// Funcion renderDashboard: renderiza datos principales, mapa y graficas.
 function renderDashboard() {
   const data = getVisibleData();
   renderKpis();
@@ -188,6 +197,7 @@ function renderDashboard() {
   document.getElementById("tableTitle").textContent = state.activeView === "principal" ? t("dataFromRiver") : t("filteredTable");
 }
 
+// Funcion renderParameterInfo: muestra tarjetas informativas de parametros.
 function renderParameterInfo() {
   const title = document.getElementById("infoPanelTitle");
   const grid = document.getElementById("parameterInfoGrid");
@@ -211,10 +221,12 @@ function renderParameterInfo() {
     .join("");
 }
 
+// Funcion getVisibleData: calcula registros visibles tras filtros.
 function getVisibleData() {
   return filterAndSortData(state.data[state.dataset], state.filters);
 }
 
+// Funcion renderKpis: actualiza tarjetas KPI.
 function renderKpis() {
   const fisico = state.data.fisicoquimicos;
   const rivers = uniqueValues([...state.data.biologicos, ...fisico], "RIO");
@@ -227,6 +239,7 @@ function renderKpis() {
   document.getElementById("kpiClass").textContent = summary.predominantClass;
 }
 
+// Funcion renderTable: pinta la tabla de registros.
 function renderTable(data) {
   const table = document.getElementById("dataTable");
   const fields = DATASETS[state.dataset].tableFields;
@@ -252,6 +265,7 @@ function renderTable(data) {
   });
 }
 
+// Funcion tableHeader: formatea encabezados de tabla.
 function tableHeader(field) {
   if (field === "FECHA") return t("date");
   if (field === "PUNTO") return t("point");
@@ -259,6 +273,7 @@ function tableHeader(field) {
   return translateField(field);
 }
 
+// Funcion selectRecord: guarda y renderiza el registro seleccionado.
 function selectRecord(record) {
   state.selectedRecord = record;
   focusRecord(record);
@@ -267,6 +282,7 @@ function selectRecord(record) {
   renderCurrentCharts();
 }
 
+// Funcion renderDetails: muestra el detalle del registro seleccionado.
 function renderDetails() {
   const badge = document.getElementById("selectedBadge");
   const title = document.getElementById("detailTitle");
@@ -287,6 +303,7 @@ function renderDetails() {
   content.innerHTML = state.dataset === "fisicoquimicos" ? renderFisicoDetail(record) : renderBioDetail(record);
 }
 
+// Funcion renderFisicoDetail: arma el detalle fisicoquimico.
 function renderFisicoDetail(record) {
   const criteria = getAvailableCriteria(state.criteria, record);
   const rows = criteria
@@ -317,6 +334,7 @@ function renderFisicoDetail(record) {
   `;
 }
 
+// Funcion renderBioDetail: arma el detalle biologico.
 function renderBioDetail(record) {
   return `
     <div class="summary-grid">
@@ -330,6 +348,7 @@ function renderBioDetail(record) {
   `;
 }
 
+// Funcion renderCurrentCharts: dibuja las graficas segun vista y seleccion.
 function renderCurrentCharts(data = getVisibleData()) {
   document.getElementById("chartPanelTitle").textContent =
     state.dataset === "fisicoquimicos" ? t("physicochemicalCharts") : t("biologicalCharts");
@@ -342,6 +361,7 @@ function renderCurrentCharts(data = getVisibleData()) {
   drawOverviewCharts(state.dataset, data);
 }
 
+// Funcion evaluateCriterion: evalua cumplimiento contra criterio numerico.
 function evaluateCriterion(value, criterion) {
   if (value === null) return { label: t("noDataShort"), className: "quality-warn" };
   const min = parseNumber(criterion.limite_min);
@@ -353,17 +373,18 @@ function evaluateCriterion(value, criterion) {
       : { label: t("review"), className: "quality-bad" };
   }
 
-  if (criterion.tipo === "mínimo") {
+  if (criterion.tipo === "mÃ­nimo") {
     return value >= min ? { label: t("complies"), className: "quality-ok" } : { label: t("review"), className: "quality-bad" };
   }
 
-  if (criterion.tipo === "máximo") {
+  if (criterion.tipo === "mÃ¡ximo") {
     return value <= max ? { label: t("complies"), className: "quality-ok" } : { label: t("review"), className: "quality-bad" };
   }
 
   return { label: t("see"), className: "quality-warn" };
 }
 
+// Funcion formatCell: formatea una celda segun tipo de campo.
 function formatCell(record, field) {
   const value = record[field] ?? "";
   if (field === "Clasificacion" || field.includes("CALIDAD")) {
@@ -372,10 +393,12 @@ function formatCell(record, field) {
   return escapeHtml(value);
 }
 
+// Funcion summaryItem: crea una tarjeta pequena de resumen.
 function summaryItem(label, value) {
   return `<div class="summary-item"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
 }
 
+// Funcion fisicoInfoItems: define explicaciones fisicoquimicas.
 function fisicoInfoItems() {
   return [
     {
@@ -405,6 +428,7 @@ function fisicoInfoItems() {
   ];
 }
 
+// Funcion bioInfoItems: define explicaciones biologicas.
 function bioInfoItems() {
   return [
     {
@@ -434,6 +458,7 @@ function bioInfoItems() {
   ];
 }
 
+// Funcion escapeHtml: escapa texto antes de insertarlo como HTML.
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")

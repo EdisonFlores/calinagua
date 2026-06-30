@@ -1,3 +1,4 @@
+// Gestiona las traducciones visibles y los atributos accesibles del dashboard.
 import { state } from "./state.js?v=35";
 
 const STORAGE_KEY = "calinagua-language";
@@ -46,6 +47,7 @@ const dictionary = {
     voiceAssistantDisabled: "Asistente de voz desactivado",
     voiceAssistantNotSupported: "El asistente de voz no está disponible en este navegador",
     interactiveTutorial: "Tutorial interactivo",
+    downloadAndroid: "Descargar para Android",
     toggleTheme: "Cambiar tema",
     openMenu: "Abrir menú",
     collapseSections: "Colapsar apartados",
@@ -211,6 +213,7 @@ const dictionary = {
     voiceAssistantDisabled: "Voice assistant disabled",
     voiceAssistantNotSupported: "Voice assistant is not available in this browser",
     interactiveTutorial: "Interactive tutorial",
+    downloadAndroid: "Download for Android",
     toggleTheme: "Change theme",
     openMenu: "Open menu",
     collapseSections: "Collapse sections",
@@ -335,6 +338,7 @@ const dictionary = {
   }
 };
 
+// Funcion initI18n: inicia el selector de idioma y aplica traducciones.
 export function initI18n(onChange) {
   const select = document.getElementById("languageSelect");
   state.language = localStorage.getItem(STORAGE_KEY) || "es";
@@ -349,11 +353,13 @@ export function initI18n(onChange) {
   });
 }
 
+// Funcion t: devuelve un texto traducido con parametros.
 export function t(key, params = {}) {
   const template = dictionary[state.language]?.[key] || dictionary.es[key] || key;
   return Object.entries(params).reduce((text, [name, value]) => text.replaceAll(`{${name}}`, value ?? ""), template);
 }
 
+// Funcion translateField: traduce nombres tecnicos de campos cuando aplica.
 export function translateField(field) {
   const labels = {
     "Oxigeno disuelto": "fieldOxigeno",
@@ -367,6 +373,7 @@ export function translateField(field) {
   return labels[field] ? t(labels[field]) : field;
 }
 
+// Funcion applyTranslations: aplica traducciones a texto y atributos accesibles.
 export function applyTranslations() {
   document.documentElement.lang = state.language;
   document.querySelectorAll("[data-i18n]").forEach((element) => {

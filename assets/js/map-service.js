@@ -1,7 +1,8 @@
+﻿// Controla Leaflet: puntos de muestreo, rios GeoJSON y resaltado de seleccion.
 import { DEFAULT_CENTER, RIVER_GEOJSON_BASE_PATH, RIVER_GEOJSON_FILES } from "./config.js?v=35";
 import { getCoordinates } from "./data-service.js?v=35";
 import { state } from "./state.js?v=35";
-import { t } from "./i18n-service.js?v=35";
+import { t } from "./i18n-service.js?v=36";
 
 let map;
 let selectedMarker;
@@ -11,6 +12,7 @@ let riverLayer;
 let riverRequestId = 0;
 const riverGeoJsonCache = new Map();
 
+// Funcion initMap: crea el mapa base de Leaflet.
 export function initMap() {
   map = L.map("map", {
     scrollWheelZoom: true
@@ -24,6 +26,7 @@ export function initMap() {
   markersLayer = L.layerGroup().addTo(map);
 }
 
+// Funcion renderMapPoints: dibuja los puntos de muestreo visibles.
 export function renderMapPoints(data, onSelect) {
   if (!map || !markersLayer || !riverLayer) return;
   markersLayer.clearLayers();
@@ -52,6 +55,7 @@ export function renderMapPoints(data, onSelect) {
   if (bounds.length > 1) map.fitBounds(bounds, { padding: [24, 24] });
 }
 
+// Funcion focusRecord: centra y resalta el registro seleccionado.
 export function focusRecord(record) {
   if (!map) return;
   const coordinates = getCoordinates(record);
@@ -89,10 +93,12 @@ export function focusRecord(record) {
   map.setView(coordinates, 13);
 }
 
+// Funcion invalidateMap: recalcula el tamano del mapa tras cambios de layout.
 export function invalidateMap() {
   if (map) window.setTimeout(() => map.invalidateSize(), 100);
 }
 
+// Funcion createPopup: construye el contenido del marcador del mapa.
 function createPopup(record) {
   const base = `
     <strong>${record.RIO || t("river")}</strong><br>
@@ -116,6 +122,7 @@ function createPopup(record) {
   `;
 }
 
+// Funcion renderRiverLayer: carga y dibuja el GeoJSON del rio activo.
 async function renderRiverLayer(riverName, pointBounds = []) {
   if (!map || !riverLayer) return;
 
@@ -146,6 +153,7 @@ async function renderRiverLayer(riverName, pointBounds = []) {
   }
 }
 
+// Funcion loadRiverGeoJson: obtiene y cachea el archivo GeoJSON del rio.
 async function loadRiverGeoJson(path) {
   if (riverGeoJsonCache.has(path)) return riverGeoJsonCache.get(path);
 
@@ -157,6 +165,7 @@ async function loadRiverGeoJson(path) {
   return geojson;
 }
 
+// Funcion getActiveRiver: deduce el rio que debe mostrarse en el mapa.
 function getActiveRiver(data) {
   if (state.selectedRecord?.RIO) return state.selectedRecord.RIO;
   if (state.filters.river) return state.filters.river;
@@ -165,11 +174,13 @@ function getActiveRiver(data) {
   return rivers.length === 1 ? rivers[0] : "";
 }
 
+// Funcion getRiverGeoJsonPath: resuelve la ruta GeoJSON asociada al nombre del rio.
 function getRiverGeoJsonPath(riverName) {
   const file = RIVER_GEOJSON_FILES[normalizeRiverName(riverName)];
   return file ? `${RIVER_GEOJSON_BASE_PATH}/${file}` : "";
 }
 
+// Funcion normalizeRiverName: normaliza nombres de rios para compararlos sin tildes.
 function normalizeRiverName(value) {
   return String(value || "")
     .normalize("NFD")
@@ -179,6 +190,7 @@ function normalizeRiverName(value) {
     .toUpperCase();
 }
 
+// Funcion fitMapToLayers: ajusta la vista del mapa a rio y puntos.
 function fitMapToLayers(layer, pointBounds) {
   const bounds = layer.getBounds();
   pointBounds.forEach((coordinates) => bounds.extend(coordinates));

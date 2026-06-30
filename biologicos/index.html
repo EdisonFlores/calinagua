@@ -62,14 +62,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-    <link rel="stylesheet" href="assets/css/app.css?v=29">
+    <link rel="stylesheet" href="assets/css/app.css?v=30">
   </head>
   <body data-page="biologicos">
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5Z4QGC6G"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+    <!-- Contenedor raiz del dashboard: sidebar, menu movil y espacio de trabajo. -->
     <div class="app-shell">
+      <!-- Sidebar de escritorio: navegacion principal y referencias inferiores. -->
       <aside class="sidebar d-none d-lg-flex">
         <div class="brand">
           <img src="img/logo.png" alt="CALINAGUA">
@@ -78,6 +80,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span data-i18n="brandSubtitle">Calidad del agua</span>
           </div>
         </div>
+        <!-- Navegacion lateral: cambia entre principal, fisicoquimicos y biologicos. -->
         <nav class="nav flex-column gap-1" aria-label="Navegación principal" data-i18n-aria-label="mainNavigation">
           <button class="nav-link active" type="button" data-view="principal">
             <i class="bi bi-grid-1x2"></i>
@@ -92,6 +95,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span data-i18n="biological">Biológicos</span>
           </button>
         </nav>
+        <!-- Referencias externas: proyectos relacionados, redes y descarga Android. -->
         <div class="sidebar-links" aria-label="Referencias externas">
           <a class="sidebar-link" href="https://moronabus.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="MoronaBus" title="MoronaBus">
             <i class="bi bi-bus-front"></i>
@@ -105,9 +109,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a class="sidebar-link" href="https://www.instagram.com/3d150n_f10r35/profilecard/?igsh=dXhlNGdzb3AzdGpm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
             <i class="bi bi-instagram"></i>
           </a>
+          <a class="sidebar-link download-apk-link" href="https://drive.google.com/file/d/1zesVzzepkkx1MRyL8S-SchTlldP9O95M/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" aria-label="Descargar para Android" title="Descargar para Android" data-i18n-aria-label="downloadAndroid" data-i18n-title="downloadAndroid">
+            <i class="bi bi-android2"></i>
+          </a>
         </div>
       </aside>
 
+      <!-- Menu movil: replica la navegacion y referencias para pantallas pequenas. -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
         <div class="offcanvas-header">
           <div class="brand compact">
@@ -117,6 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar" data-i18n-aria-label="close"></button>
         </div>
         <div class="offcanvas-body">
+          <!-- Navegacion movil: usa los mismos destinos del sidebar de escritorio. -->
           <nav class="nav flex-column gap-1" aria-label="Navegación móvil" data-i18n-aria-label="mobileNavigation">
             <button class="nav-link active" type="button" data-view="principal" data-bs-dismiss="offcanvas">
               <i class="bi bi-grid-1x2"></i>
@@ -131,6 +140,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span data-i18n="biological">Biológicos</span>
             </button>
           </nav>
+          <!-- Referencias moviles: accesos externos y APK dentro del offcanvas. -->
           <div class="sidebar-links mobile-links" aria-label="Referencias externas">
             <a class="sidebar-link" href="https://moronabus.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="MoronaBus" title="MoronaBus">
               <i class="bi bi-bus-front"></i>
@@ -144,10 +154,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a class="sidebar-link" href="https://www.instagram.com/3d150n_f10r35/profilecard/?igsh=dXhlNGdzb3AzdGpm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
               <i class="bi bi-instagram"></i>
             </a>
+            <a class="sidebar-link download-apk-link" href="https://drive.google.com/file/d/1zesVzzepkkx1MRyL8S-SchTlldP9O95M/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" aria-label="Descargar para Android" title="Descargar para Android" data-i18n-aria-label="downloadAndroid" data-i18n-title="downloadAndroid">
+              <i class="bi bi-android2"></i>
+            </a>
           </div>
         </div>
       </div>
 
+      <!-- Area de trabajo: encabezado, filtros, mapa, tabla y graficas. -->
       <main class="workspace">
         <header class="topbar">
           <button class="btn btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-label="Abrir menú" data-i18n-aria-label="openMenu">
@@ -160,6 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p data-i18n="dashboard">Dashboard ambiental</p>
             <h1 id="viewTitle">Principal</h1>
           </div>
+          <!-- Herramientas globales: hora, clima, idioma, voz, tutorial y tema. -->
           <div class="topbar-tools">
             <div class="status-pill d-none d-md-flex" title="Hora local" data-i18n-title="localTime">
               <i class="bi bi-clock"></i>
@@ -185,7 +200,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </header>
 
+        <!-- Contenido dinamico renderizado y actualizado desde los servicios JS. -->
         <section class="content-grid">
+          <!-- KPI principales: resumen rapido calculado a partir del dataset visible. -->
           <section class="kpi-grid" aria-label="Indicadores principales" data-i18n-aria-label="mainIndicators">
             <article class="metric-card">
               <span data-i18n="monitoredRivers">Ríos monitoreados</span>
@@ -205,6 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </article>
           </section>
 
+          <!-- Panel de filtros: controla dataset, rio, punto, fecha y orden. -->
           <section class="panel filters-panel">
             <div class="panel-heading">
               <div>
@@ -250,6 +268,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </section>
 
+          <!-- Banda de seleccion: resume el registro seleccionado desde la tabla. -->
           <section class="selection-strip panel">
             <div>
               <p data-i18n="analysis">Análisis</p>
@@ -261,6 +280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </section>
 
+          <!-- Panel informativo: explica la interpretacion de parametros del agua. -->
           <section class="panel info-panel">
             <div class="panel-heading">
               <div>
@@ -271,6 +291,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="info-grid" id="parameterInfoGrid"></div>
           </section>
 
+          <!-- Tabla y mapa: muestran registros filtrados y ubicacion territorial. -->
           <section class="data-map-grid">
             <article class="panel table-panel">
               <div class="panel-heading">
@@ -300,6 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </article>
           </section>
 
+          <!-- Panel de graficas: compara o resume parametros segun la vista activa. -->
           <section class="panel charts-panel">
             <div class="panel-heading">
               <div>
@@ -316,10 +338,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </main>
     </div>
 
+    <!-- Dependencias externas y modulo principal de la aplicacion. -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="module" src="assets/js/app.js?v=36"></script>
+    <script type="module" src="assets/js/app.js?v=37"></script>
   </body>
 </html>
 
